@@ -251,17 +251,25 @@ body {
     overflow: hidden;
 }
 
-.book-cover picture {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-
 .cover-image {
     width: 100%;
     height: 100%;
     object-fit: fill;
     display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.cover-desktop { display: block; }
+.cover-mobile { display: none; }
+
+@media (max-width: 768px) {
+    .cover-desktop { display: none; }
+    .cover-mobile { 
+        display: block; 
+        object-fit: cover;
+    }
 }
 
 .book-cover::before {
