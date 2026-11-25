@@ -24,7 +24,7 @@ function setRandomTexture() {
     const texturePath = textureImages[currentTextureIndex];
     // Применяем текстуру к корневому элементу книги
     const root = document.documentElement;
-    root.style.setProperty('--paper-texture', `url('${texturePath}') no-repeat center/cover`);
+    root.style.setProperty('--paper-texture-url', `url('${texturePath}')`);
     // Обновляем переменную CSS для fallback
     root.style.setProperty('--paper-bg', `linear-gradient(135deg, #f5e6d3 0%, #e6d8c2 100%)`);
 }

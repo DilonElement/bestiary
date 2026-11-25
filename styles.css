@@ -6,7 +6,7 @@
 :root {
     /* Пергамент и чернила — по референсу */
     --paper-bg: #f5e6d3;
-    --paper-texture: url('images/paper-texture.jpg') no-repeat center/cover;
+    --paper-texture-url: url('images/paper-texture.jpg');
     --paper-dark: #e6d8c2;
     --paper-light: #faf0e0;
     --ink: #2b1b0c;
@@ -122,9 +122,11 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
-    background: var(--paper-light) var(--paper-texture);
+    background: var(--paper-light);
+    background-image: var(--paper-texture-url);
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     border: 1px solid var(--ink-muted);
     box-shadow: inset 1px 1px 0 rgba(255,255,255,0.6);
     overflow: hidden;
