@@ -8,13 +8,13 @@ const DATA_URL = 'data/monsters.json';
 const EXPORT_FILENAME = 'bestiary-monsters.json';
 
 // --- Текстуры пергамента (меняются при перелистывании) ---
+// Используем именно сгенерированные noir-текстуры
 const textureImages = [
-    'images/paper-texture.jpg',
-    'images/Generated_image_1_2.jpg',
-    'images/Generated_image_1_5.png',
     'images/Generated_image_1_6.png',
-    'images/Generated_image_1_8.png',
+    'images/Generated_image_1_5.png',
     'images/Generated_image_1_9.png',
+    'images/GbKgM_PyUk8.jpg',
+    'images/Generated_image_1_2.jpg',
 ];
 let currentTextureIndex = 0;
 
@@ -131,8 +131,12 @@ function renderPage(index) {
         }
     }
 
-    updateNavigationUI();
-    updateThumbnails();
+    // Применяем случайную текстуру после рендеринга страницы
+    setRandomTexture();
+
+    setRandomTexture();
+updateNavigationUI();
+updateThumbnails();
 }
 
 function createCoverPage() {
