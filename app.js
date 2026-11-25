@@ -114,7 +114,7 @@ function createCoverPage() {
     div.className = 'page book-cover page-flip-enter';
     div.innerHTML = `
         <img src="images/cover.png" alt="Обложка бестиария" class="cover-image cover-desktop">
-        <img src="images/cover1.png" alt="Обложка бестиария" class="cover-image cover-mobile">
+        <img src="images/cover1.jpg" alt="Обложка бестиария" class="cover-image cover-mobile">
     `;
     return div;
 }
