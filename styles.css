@@ -268,8 +268,9 @@ body {
     .cover-desktop { display: none; }
     .cover-mobile { 
         display: block; 
-        object-fit: contain;
-        background: linear-gradient(135deg, var(--paper-bg) 0%, var(--paper-dark) 100%);
+        object-fit: fill;
+        width: 100vw;
+        height: 100vh;
     }
 }
 
