@@ -7,6 +7,28 @@
 const DATA_URL = 'data/monsters.json';
 const EXPORT_FILENAME = 'bestiary-monsters.json';
 
+// --- Текстуры пергамента (меняются при перелистывании) ---
+const textureImages = [
+    'images/paper-texture.jpg',
+    'images/Generated_image_1_2.jpg',
+    'images/Generated_image_1_5.png',
+    'images/Generated_image_1_6.png',
+    'images/Generated_image_1_8.png',
+    'images/Generated_image_1_9.png',
+];
+let currentTextureIndex = 0;
+
+// --- Установка случайной текстуры ---
+function setRandomTexture() {
+    currentTextureIndex = Math.floor(Math.random() * textureImages.length);
+    const texturePath = textureImages[currentTextureIndex];
+    // Применяем текстуру к корневому элементу книги
+    const root = document.documentElement;
+    root.style.setProperty('--paper-texture', `url('${texturePath}') no-repeat center/cover`);
+    // Обновляем переменную CSS для fallback
+    root.style.setProperty('--paper-bg', `linear-gradient(135deg, #f5e6d3 0%, #e6d8c2 100%)`);
+}
+
 // --- Состояние ---
 let monsters = [];           // Загруженные монстры
 let currentPageIndex = 0;    // Текущая страница (0 = обложка, 1+ = монстры)
@@ -96,6 +118,7 @@ function renderPage(index) {
 
     if (index === 0) {
         // Обложка
+        setRandomTexture();
         bookContainer.appendChild(createCoverPage());
     } else {
         // Страница монстра (index - 1 = индекс в массиве монстров)
@@ -399,6 +422,7 @@ function setupNavigation() {
     navPrev.addEventListener('click', () => {
         if (currentPageIndex > 0) {
             currentPageIndex--;
+            setRandomTexture();
             renderPage(currentPageIndex);
         }
     });
@@ -407,6 +431,7 @@ function setupNavigation() {
         const maxPage = monsters.length; // обложка + монстры
         if (currentPageIndex < maxPage) {
             currentPageIndex++;
+            setRandomTexture();
             renderPage(currentPageIndex);
         }
     });

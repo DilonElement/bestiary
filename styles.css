@@ -6,6 +6,7 @@
 :root {
     /* Пергамент и чернила — по референсу */
     --paper-bg: #f5e6d3;
+    --paper-texture: url('images/paper-texture.jpg') no-repeat center/cover;
     --paper-dark: #e6d8c2;
     --paper-light: #faf0e0;
     --ink: #2b1b0c;
@@ -51,12 +52,13 @@ html {
 
 body {
     font-family: var(--font-body);
-    background: var(--paper-bg);
+    background: var(--paper-bg) var(--paper-texture), var(--paper-bg);
     color: var(--ink);
     line-height: 1.6;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-size: cover;
 }
 
 ::selection {
