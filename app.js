@@ -29,6 +29,9 @@ function setRandomTexture() {
     root.style.setProperty('--paper-bg', `linear-gradient(135deg, #f5e6d3 0%, #e6d8c2 100%)`);
 }
 
+// --- Первоначальная установка текстуры при загрузке страницы ---
+setRandomTexture();
+
 // --- Состояние ---
 let monsters = [];           // Загруженные монстры
 let currentPageIndex = 0;    // Текущая страница (0 = обложка, 1+ = монстры)
