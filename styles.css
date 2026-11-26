@@ -6,7 +6,7 @@
 :root {
     /* Пергамент и чернила — по референсу */
     --paper-bg: #f5e6d3;
-    --paper-texture-url: url('images/Generated_image_1_2.jpg');
+    --paper-texture-url: url('images/paper-texture.jpg');
     --paper-dark: #e6d8c2;
     --paper-light: #faf0e0;
     --ink: #2b1b0c;
