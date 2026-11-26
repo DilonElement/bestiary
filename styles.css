@@ -423,7 +423,7 @@ body {
 
 .monster-illustration-frame {
     flex: 1;
-    background: #fff;
+    background: rgba(255,255,255,0.6);
     border: 1px solid var(--ink-muted);
     border-radius: var(--radius-md);
     overflow: hidden;
