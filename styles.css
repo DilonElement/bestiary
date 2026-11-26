@@ -499,7 +499,7 @@ body {
 .page-details-wrapper {
     flex: 1;
     background: linear-gradient(135deg, rgba(250,240,224,0.8) 0%, rgba(235,225,205,0.8) 100%);
-    padding: 200px 2.5rem 2rem 2.5rem;
+    padding: 2rem 2.5rem;
     overflow-y: auto;
     display: flex;
     flex-direction: column;

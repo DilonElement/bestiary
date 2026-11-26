@@ -241,7 +241,7 @@ function createMonsterPage(monster, pageNum) {
                     <button class="tab-btn-page" data-tab="prompt">Промпт</button>
                 </div>
             </div>
-            <div style="margin-bottom: auto;">
+            <div style="flex: 1;">
                 <div class="tab-panel-page active" id="tabStats">
                     ${statsHtml}
 
