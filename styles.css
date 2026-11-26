@@ -416,7 +416,7 @@ body {
     z-index: 100;
     align-self: flex-start;
     width: 100%;
-    background: var(--paper-light) url('images/cutout.png') center/cover no-repeat;
+    background: var(--paper-light) url('images/cutout.png?v=2') center/cover no-repeat;
     padding: 0;
     box-shadow: none;
     border: none;
