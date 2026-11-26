@@ -592,6 +592,7 @@ body {
 
 .tab-panel-page { display: none; animation: fadeIn 0.2s; }
 .tab-panel-page.active { display: block; }
+.tab-panel-page:first-child { margin-top: 180px; }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
