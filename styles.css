@@ -421,11 +421,10 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding-top: 1rem;
-    padding-bottom: 0.5rem;
+    padding: 0;
     box-shadow: none;
     border: none;
-    margin-bottom: 1rem;
+    margin: 0;
 }
 
 .page-header-row {
