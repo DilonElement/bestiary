@@ -499,7 +499,7 @@ body {
 .page-details-wrapper {
     flex: 1;
     background: linear-gradient(135deg, rgba(250,240,224,0.8) 0%, rgba(235,225,205,0.8) 100%);
-    padding: 2rem 2.5rem;
+    padding: 200px 2.5rem 2rem 2.5rem;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -590,7 +590,7 @@ body {
     content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px; background: var(--gold);
 }
 
-.tab-panel-page { display: none; animation: fadeIn 0.2s; margin-top: 180px; }
+.tab-panel-page { display: none; animation: fadeIn 0.2s; }
 .tab-panel-page.active { display: block; }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
