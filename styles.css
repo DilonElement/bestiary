@@ -399,11 +399,7 @@ body {
     text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
 }
 
-.page-header-row {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 0.75rem;
+.page-header-sticky {
     position: sticky;
     top: 0;
     z-index: 100;
@@ -413,6 +409,20 @@ body {
     padding-bottom: 0.5rem;
     box-shadow: 0 4px 12px rgba(43,27,12,0.25);
     border-bottom: 2px solid var(--ink-muted);
+    margin-bottom: 1rem;
+}
+
+.page-header-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0;
+    position: static;
+    top: auto;
+    z-index: auto;
+    background: none;
+    padding: 0;
+    box-shadow: none;
 }
 
 .page-number-right {

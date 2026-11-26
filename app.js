@@ -225,23 +225,23 @@ function createMonsterPage(monster, pageNum) {
         </div>
 
         <div class="page-details-wrapper">
-            <div class="page-header-row">
-                <span class="page-number-right">${pageNum}</span>
-                <h2 class="monster-name-page">${escapeHtml(monster.name)}</h2>
-            </div>
-            <div style="margin-bottom: auto;">
+            <div class="page-header-sticky">
+                <div class="page-header-row">
+                    <span class="page-number-right">${pageNum}</span>
+                    <h2 class="monster-name-page">${escapeHtml(monster.name)}</h2>
+                </div>
                 <div class="monster-meta-page">
                     ${crBadge}${typeBadge}${sizeBadge}${alignmentBadge}${sourceBadge}
                 </div>
                 ${editBtnHtml}
-
                 <div class="detail-tabs-page">
                     <button class="tab-btn-page active" data-tab="stats">Характеристики</button>
                     <button class="tab-btn-page" data-tab="description">Описание</button>
                     <button class="tab-btn-page" data-tab="actions">Действия</button>
                     <button class="tab-btn-page" data-tab="prompt">Промпт</button>
                 </div>
-
+            </div>
+            <div style="margin-bottom: auto;">
                 <div class="tab-panel-page active" id="tabStats">
                     ${statsHtml}
 
