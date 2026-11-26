@@ -407,6 +407,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 10;
+    align-self: flex-start;
     background: linear-gradient(135deg, rgba(250,240,224,0.95) 0%, rgba(235,225,205,0.95) 100%);
     padding-top: 1rem;
     padding-bottom: 0.5rem;
