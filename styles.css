@@ -9,12 +9,12 @@
     --paper-texture-url: url('images/Generated_image_1_2.jpg');
     --paper-dark: #e6d8c2;
     --paper-light: #faf0e0;
-    --ink: #2b1b0c;
-    --ink-muted: #5a4a3a;
-    --ink-light: #8c7a66;
-    --gold: #c9b896;
-    --gold-dim: #9a8d6b;
-    --gold-bright: #e8dcc4;
+    --ink: #1a1008;
+    --ink-muted: #3d3226;
+    --ink-light: #5a4a3a;
+    --gold: #b8966e;
+    --gold-dim: #8d7555;
+    --gold-bright: #d4c4a0;
     --red-dark: #8b2e2e;
     --red-bright: #b33a3a;
     --green-dark: #2d6b3a;
@@ -540,8 +540,8 @@ body {
     flex-wrap: wrap;
     gap: 0.75rem;
     margin-bottom: 1.5rem;
-    font-size: 0.85rem;
-    color: var(--ink-muted);
+    font-size: 0.95rem;
+    color: var(--ink);
 }
 
 .monster-meta-page span {
@@ -561,13 +561,14 @@ body {
 
 .type-badge-page {
     text-transform: uppercase;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     letter-spacing: 0.5px;
     font-weight: 600;
+    color: var(--gold);
 }
-.size-badge-page { font-family: var(--font-mono); font-size: 0.75rem; }
-.alignment-badge-page { font-style: italic; }
-.source-badge-page { color: var(--ink-muted); font-size: 0.75rem; }
+.size-badge-page { font-family: var(--font-mono); font-size: 0.85rem; color: var(--ink); }
+.alignment-badge-page { font-style: italic; color: var(--ink); }
+.source-badge-page { color: var(--ink-muted); font-size: 0.85rem; }
 
 /* Вкладки деталей */
 .detail-tabs-page {
@@ -585,7 +586,7 @@ body {
     color: var(--ink-muted);
     padding: 0.5rem 1rem;
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
     border-radius: var(--radius-sm) var(--radius-sm) 0 0;
@@ -619,7 +620,7 @@ body {
 }
 
 .stat-block-page {
-    background: rgba(245,230,211,0.7);
+    background: var(--paper-bg);
     border: 1px solid var(--ink-muted);
     border-radius: var(--radius-md);
     padding: 0.75rem;
@@ -627,11 +628,12 @@ body {
 }
 
 .stat-label-page {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    color: var(--ink-muted);
+    color: var(--ink);
     margin-bottom: 0.25rem;
+    font-weight: 600;
 }
 
 .stat-value-page {
@@ -642,8 +644,8 @@ body {
 }
 
 .stat-mod-page {
-    font-size: 0.9rem;
-    color: var(--ink-muted);
+    font-size: 1rem;
+    color: var(--ink);
     font-weight: 600;
 }
 .stat-mod-page.positive { color: var(--green-dark); }
@@ -656,7 +658,7 @@ body {
     gap: 1rem;
     margin-bottom: 1.5rem;
     padding: 1rem;
-    background: rgba(245,230,211,0.7);
+    background: var(--paper-bg);
     border: 1px solid var(--ink-muted);
     border-radius: var(--radius-md);
 }
@@ -668,13 +670,14 @@ body {
     min-width: 100px;
 }
 .stat-item-label-page {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    color: var(--ink-muted);
+    color: var(--ink);
     letter-spacing: 0.5px;
+    font-weight: 600;
 }
 .stat-item-value-page {
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--ink);
     font-family: var(--font-mono);
@@ -683,14 +686,15 @@ body {
 /* Описание */
 .description-content-page {
     line-height: 1.8;
-    color: var(--ink-muted);
+    color: var(--ink);
+    font-size: 1.05rem;
 }
 .description-content-page p { margin-bottom: 1rem; }
 .description-content-page h3 {
     font-family: var(--font-title);
     color: var(--gold);
     margin: 1.5rem 0 0.75rem;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     border-bottom: 1px solid var(--ink-muted);
     padding-bottom: 0.25rem;
 }
@@ -703,7 +707,7 @@ body {
 }
 
 .action-item-page {
-    background: rgba(245,230,211,0.7);
+    background: var(--paper-bg);
     border: 1px solid var(--ink-muted);
     border-radius: var(--radius-md);
     padding: 1rem;
@@ -721,13 +725,13 @@ body {
 
 .action-name-page {
     font-family: var(--font-title);
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: var(--gold);
 }
 
 .action-type-page {
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     padding: 0.15rem 0.5rem;
@@ -743,7 +747,8 @@ body {
 .action-type-page.regional   { background: rgba(0,100,0,0.2); color: #006400; border: 1px solid #006400; }
 
 .action-desc-page {
-    color: var(--ink-muted);
+    color: var(--ink);
+    font-size: 1rem;
     line-height: 1.7;
     white-space: pre-wrap;
 }
@@ -751,16 +756,16 @@ body {
 /* Промпты */
 .prompt-section-page {
     margin-bottom: 1.5rem;
-    background: rgba(245,230,211,0.7);
+    background: var(--paper-bg);
     border: 1px solid var(--ink-muted);
     border-radius: var(--radius-md);
     padding: 1rem;
 }
 .prompt-section-page label {
     display: block;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    color: var(--ink-muted);
+    color: var(--ink);
     margin-bottom: 0.5rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -769,12 +774,12 @@ body {
     width: 100%;
     min-height: 100px;
     padding: 0.75rem;
-    background: rgba(255,255,255,0.6);
+    background: var(--paper-bg);
     border: 1px solid var(--ink-muted);
     border-radius: var(--radius-sm);
     color: var(--ink);
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     line-height: 1.5;
     resize: vertical;
     transition: border-color 0.15s;
@@ -851,7 +856,7 @@ body {
     border-bottom: 1px solid var(--ink-muted);
 }
 
-.modal-header h3 { font-family: var(--font-title); color: var(--gold); }
+.modal-header h3 { font-family: var(--font-title); color: var(--gold); font-size: 1.3rem; }
 
 .modal-close {
     background: none;
@@ -873,9 +878,9 @@ body {
 .form-group.full-width { grid-column: 1 / -1; }
 
 .form-group label {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    color: var(--ink-muted);
+    color: var(--ink);
     text-transform: uppercase;
     letter-spacing: 0.3px;
 }
@@ -883,7 +888,7 @@ body {
 .form-group input,
 .form-group select,
 .form-group textarea {
-    background: rgba(255,255,255,0.7);
+    background: var(--paper-bg);
     border: 1px solid var(--ink-muted);
     border-radius: var(--radius-sm);
     color: var(--ink);
