@@ -18,9 +18,9 @@ const textureImages = [
 ];
 let currentTextureIndex = 0;
 
-// --- Установка случайной текстуры ---
-function setRandomTexture() {
-    currentTextureIndex = Math.floor(Math.random() * textureImages.length);
+// --- Установка текстуры по порядку (циклически) ---
+function setNextTexture() {
+    currentTextureIndex = (currentTextureIndex + 1) % textureImages.length;
     const texturePath = textureImages[currentTextureIndex];
     // Применяем текстуру к корневому элементу книги
     const root = document.documentElement;
@@ -30,7 +30,7 @@ function setRandomTexture() {
 }
 
 // --- Первоначальная установка текстуры при загрузке страницы ---
-setRandomTexture();
+setNextTexture();
 
 // --- Состояние ---
 let monsters = [];           // Загруженные монстры
@@ -121,7 +121,7 @@ function renderPage(index) {
 
     if (index === 0) {
         // Обложка
-        setRandomTexture();
+        setNextTexture();
         bookContainer.appendChild(createCoverPage());
     } else {
         // Страница монстра (index - 1 = индекс в массиве монстров)
@@ -132,9 +132,9 @@ function renderPage(index) {
     }
 
     // Применяем случайную текстуру после рендеринга страницы
-    setRandomTexture();
+    setNextTexture();
 
-    setRandomTexture();
+    setNextTexture();
 updateNavigationUI();
 updateThumbnails();
 }
@@ -429,7 +429,7 @@ function setupNavigation() {
     navPrev.addEventListener('click', () => {
         if (currentPageIndex > 0) {
             currentPageIndex--;
-            setRandomTexture();
+            setNextTexture();
             renderPage(currentPageIndex);
         }
     });
@@ -438,7 +438,7 @@ function setupNavigation() {
         const maxPage = monsters.length; // обложка + монстры
         if (currentPageIndex < maxPage) {
             currentPageIndex++;
-            setRandomTexture();
+            setNextTexture();
             renderPage(currentPageIndex);
         }
     });
