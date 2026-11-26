@@ -22,10 +22,16 @@ let currentTextureIndex = 0;
 function setNextTexture() {
     currentTextureIndex = (currentTextureIndex + 1) % textureImages.length;
     const texturePath = textureImages[currentTextureIndex];
-    // Применяем текстуру к корневому элементу книги
     const root = document.documentElement;
     root.style.setProperty('--paper-texture-url', `url('${texturePath}')`);
-    // Обновляем переменную CSS для fallback
+    root.style.setProperty('--paper-bg', `linear-gradient(135deg, #f5e6d3 0%, #e6d8c2 100%)`);
+}
+
+function setPrevTexture() {
+    currentTextureIndex = (currentTextureIndex - 1 + textureImages.length) % textureImages.length;
+    const texturePath = textureImages[currentTextureIndex];
+    const root = document.documentElement;
+    root.style.setProperty('--paper-texture-url', `url('${texturePath}')`);
     root.style.setProperty('--paper-bg', `linear-gradient(135deg, #f5e6d3 0%, #e6d8c2 100%)`);
 }
 
@@ -121,7 +127,6 @@ function renderPage(index) {
 
     if (index === 0) {
         // Обложка
-        setNextTexture();
         bookContainer.appendChild(createCoverPage());
     } else {
         // Страница монстра (index - 1 = индекс в массиве монстров)
@@ -131,12 +136,8 @@ function renderPage(index) {
         }
     }
 
-    // Применяем случайную текстуру после рендеринга страницы
-    setNextTexture();
-
-    setNextTexture();
-updateNavigationUI();
-updateThumbnails();
+    updateNavigationUI();
+    updateThumbnails();
 }
 
 function createCoverPage() {
@@ -429,7 +430,7 @@ function setupNavigation() {
     navPrev.addEventListener('click', () => {
         if (currentPageIndex > 0) {
             currentPageIndex--;
-            setNextTexture();
+            setPrevTexture();
             renderPage(currentPageIndex);
         }
     });
