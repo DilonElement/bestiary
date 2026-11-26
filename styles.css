@@ -113,7 +113,11 @@ body {
     margin: 0;
     box-shadow: none;
     border-radius: 0;
-    background: transparent;
+    background: var(--paper-bg);
+    background-image: var(--paper-texture-url);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .book-container:has(.book-cover) .book-cover {
