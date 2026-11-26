@@ -417,7 +417,7 @@ body {
     align-self: flex-start;
     width: 100%;
     background: var(--paper-light);
-    background-image: url('images/вырезка.png');
+    background-image: url('images/cutout.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
