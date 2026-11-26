@@ -417,7 +417,6 @@ body {
     align-self: flex-start;
     width: 100%;
     background: url('images/cutout.png?v=2') center/cover no-repeat;
-    background-size: 105% 105%;
     padding: 0;
     box-shadow: none;
     border: none;
