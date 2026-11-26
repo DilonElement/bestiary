@@ -416,7 +416,7 @@ body {
     z-index: 100;
     align-self: flex-start;
     width: 100%;
-    background: var(--paper-light);
+    background-color: var(--paper-light);
     background-image: url('images/cutout.png');
     background-size: cover;
     background-position: center;
