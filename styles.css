@@ -416,15 +416,18 @@ body {
     z-index: 100;
     align-self: flex-start;
     width: 100%;
-    background-color: var(--paper-light);
-    background-image: url('images/cutout.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: var(--paper-light) url('images/cutout.png') center/cover no-repeat;
     padding: 0;
     box-shadow: none;
     border: none;
     margin: 0;
+}
+.page-header-sticky::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--paper-light);
+    z-index: -1;
 }
 
 .page-header-row {
