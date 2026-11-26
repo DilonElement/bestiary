@@ -238,7 +238,6 @@ function createMonsterPage(monster, pageNum) {
                     <button class="tab-btn-page active" data-tab="stats">Характеристики</button>
                     <button class="tab-btn-page" data-tab="description">Описание</button>
                     <button class="tab-btn-page" data-tab="actions">Действия</button>
-                    <button class="tab-btn-page" data-tab="prompt">Промпт</button>
                 </div>
             </div>
             <div style="flex: 1;">
