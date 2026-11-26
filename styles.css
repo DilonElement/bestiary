@@ -117,6 +117,16 @@ body {
     border: none;
 }
 
+/* Контейнер для страницы монстра — на весь размер сайта */
+.book-container:not(:has(.book-cover)) {
+    max-width: none;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    border-radius: 0;
+    background: var(--paper-bg);
+}
+
 /* Страница книги */
 .page {
     position: relative;
