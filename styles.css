@@ -405,7 +405,11 @@ body {
     z-index: 100;
     align-self: flex-start;
     width: 100%;
-    background: transparent;
+    background: var(--paper-light);
+    background-image: var(--paper-texture-url);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     padding-top: 1rem;
     padding-bottom: 0.5rem;
     box-shadow: none;
