@@ -207,11 +207,9 @@ function createMonsterPage(monster, pageNum) {
             <div class="monster-illustration-frame" style="border-bottom-width: 200px; margin-bottom: 0px; margin-top: 50px;">
                 ${hasImage
                     ? `<img src="${escapeHtml(illustrationUrl)}?v=${Date.now()}" alt="${escapeHtml(monster.name)}" style="width:78%;height:78%;object-fit:cover;" onerror="this.style.display='none'; this.parentElement.querySelector('.illustration-placeholder').style.display='flex';">`
-                    : (monster.name === 'Тараск'
-                        ? `<img src="images/Тараск.png" alt="${escapeHtml(monster.name)}" style="width:400px;height:439px;object-fit:cover;">`
-                        : monster.name === 'Гоблин'
-                            ? `<img src="images/Гоблин.png" alt="${escapeHtml(monster.name)}" style="width:400px;height:439px;object-fit:cover;">`
-                            : `<img src="images/шаблон монстров.png" alt="${escapeHtml(monster.name)}" style="width:400px;height:439px;object-fit:cover;">`)
+                    : monster.illustration
+                        ? `<img src="${escapeHtml(monster.illustration)}" alt="${escapeHtml(monster.name)}" style="width:400px;height:439px;object-fit:cover;">`
+                        : `<img src="images/шаблон монстров.png" alt="${escapeHtml(monster.name)}" style="width:400px;height:439px;object-fit:cover;">`}
                 }
                 <div class="illustration-placeholder" style="${hasImage ? 'display:none' : 'display:none'}">
                     <span class="placeholder-icon">🖼</span>
