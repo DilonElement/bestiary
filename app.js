@@ -8,13 +8,15 @@ const DATA_URL = 'data/monsters.json';
 const EXPORT_FILENAME = 'bestiary-monsters.json';
 
 // --- Текстуры пергамента (привязаны к индексу страницы) ---
-// Используем именно сгенерированные noir-текстуры
+// Используем новые страницы
 const textureImages = [
-    'images/Generated_image_1_6.png',
-    'images/Generated_image_1_5.png',
-    'images/Generated_image_1_9.png',
-    'images/GbKgM_PyUk8.jpg',
-    'images/Generated_image_1_2.jpg',
+    'images/%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0%201.jpg',
+    'images/%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0%202.jpg',
+    'images/%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0%203.jpg',
+    'images/%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0%204.jpg',
+    'images/%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0%205.jpg',
+    'images/%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0%206.jpg',
+    'images/%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0%207.jpg',
 ];
 
 // --- Установка текстуры по индексу страницы (циклически) ---
