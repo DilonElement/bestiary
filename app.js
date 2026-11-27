@@ -10,13 +10,7 @@ const EXPORT_FILENAME = 'bestiary-monsters.json';
 // --- Текстуры пергамента (привязаны к индексу страницы) ---
 // Используем новые страницы
 const textureImages = [
-    'images/%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0%201.jpg',
-    'images/%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0%202.jpg',
     'images/%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0%203.jpg',
-    'images/%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0%204.jpg',
-    'images/%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0%205.jpg',
-    'images/%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0%206.jpg',
-    'images/%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0%207.jpg',
 ];
 
 // --- Установка текстуры по индексу страницы (циклически) ---
