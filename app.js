@@ -236,9 +236,6 @@ function createMonsterPage(monster, pageNum) {
         </div>
 
         <div class="page-details-wrapper">
-            <div class="page-header-sticky">
-                ${editBtnHtml}
-            </div>
             <div style="flex: 1;">
                 <div class="tab-panel-page active" id="tabStats">
                     <div class="monster-meta-page">
