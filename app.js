@@ -19,6 +19,19 @@ const textureImages = [
     'images/%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0%207.jpg',
 ];
 
+// --- Картинки "название" для дополнительного фрейма ---
+const titleImages = {
+    'Гоблин': 'images/%D0%93%D0%BE%D0%B1%D0%BB%D0%B8%D0%BD%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5.png',
+    'Багбир': 'images/%D0%91%D0%B0%D0%B3%D0%B1%D0%B8%D1%80%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5.png',
+    'Доппельгангер': 'images/%D0%94%D0%BE%D0%BF%D0%BF%D0%B5%D0%BB%D1%8C%D0%B3%D0%B0%D0%BD%D0%B3%D0%B5%D1%80%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5.png',
+    'Зомби': 'images/%D0%97%D0%BE%D0%BC%D0%B1%D0%B8%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5.png',
+    'Лич': 'images/%D0%9B%D0%B8%D1%87%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5.png',
+    'Мимик': 'images/%D0%9C%D0%B8%D0%BC%D0%B8%D0%BA%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5.png',
+    'Наблюдатель': 'images/%D0%9D%D0%B0%D0%B1%D0%BB%D1%8E%D0%B4%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5.png',
+    'Скелет': 'images/%D0%A1%D0%BA%D0%B5%D0%BB%D0%B5%D1%82%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5.png',
+    'Тараск': 'images/%D0%A2%D0%B0%D1%80%D0%B0%D1%81%D0%BA%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5.png',
+};
+
 // --- Установка текстуры по индексу страницы (циклически) ---
 function setTextureForPage(pageIndex) {
     const textureIndex = pageIndex % textureImages.length;
@@ -221,7 +234,9 @@ function createMonsterPage(monster, pageNum) {
                 <div class="illustration-crow">🐦‍⬛</div>
             </div>
             <div class="monster-illustration-frame-extra" style="width: 400px; height: 234px; margin-top: 20px; margin-left: auto; margin-right: auto; border: 1px dashed var(--ink-muted); border-radius: var(--radius-md); overflow: hidden; background: transparent;">
-                <img src="images/шаблон монстров.png" alt="${escapeHtml(monster.name)}" style="width:100%;height:100%;object-fit:cover;">
+                ${titleImages[monster.name]
+                    ? `<img src="${titleImages[monster.name]}" alt="${escapeHtml(monster.name)}" style="width:100%;height:100%;object-fit:cover;">`
+                    : ''}
             </div>
         </div>
 
