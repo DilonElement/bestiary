@@ -215,7 +215,6 @@ function createMonsterPage(monster, pageNum) {
                     <p>Нет иллюстрации</p>
                     <small>Добавьте URL в режиме редактирования</small>
                 </div>
-                <div class="illustration-crow">🐦‍⬛</div>
             </div>
             <div class="detail-tabs-page" style="margin-top: 20px; margin-bottom: 50px;">
                 <button class="tab-btn-page active" data-tab="stats">Статы</button>
