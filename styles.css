@@ -475,7 +475,7 @@ body {
 .monster-illustration-frame {
     flex: 1;
     background: transparent;
-    border: 1px solid var(--ink-muted);
+    border: 0;
     border-radius: var(--radius-md);
     overflow: hidden;
     display: flex;
