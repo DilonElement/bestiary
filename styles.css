@@ -212,7 +212,7 @@ body {
     justify-content: center;
     width: 44px;
     height: 44px;
-    background: #fff;
+    background: transparent;
     border: 1px solid var(--ink);
     border-radius: var(--radius-md);
     color: var(--ink);
