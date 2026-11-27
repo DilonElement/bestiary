@@ -192,7 +192,6 @@ function createMonsterPage(monster, pageNum) {
 
     div.innerHTML = `
         <div class="page-illustration-wrapper" style="padding-right: 0px; padding-left: 50px;">
-            <span class="page-number">${pageNum}</span>
             <div class="monster-illustration-frame" style="border-bottom-width: 200px; margin: 0;">
                 ${hasImage
                     ? `<img src="${escapeHtml(illustrationUrl)}?v=${Date.now()}" alt="${escapeHtml(monster.name)}" style="width:320px;" onerror="this.style.display='none'; this.parentElement.querySelector('.illustration-placeholder').style.display='flex';">`
@@ -238,9 +237,6 @@ function createMonsterPage(monster, pageNum) {
 
         <div class="page-details-wrapper">
             <div class="page-header-sticky">
-                <div class="page-header-row">
-                    <h2 class="monster-name-page">${escapeHtml(monster.name)}</h2>
-                </div>
                 ${editBtnHtml}
             </div>
             <div style="flex: 1;">
