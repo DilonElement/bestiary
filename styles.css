@@ -15,9 +15,10 @@
     --gold: #b8966e;
     --gold-dim: #8d7555;
     --gold-bright: #d4c4a0;
-    --red-dark: #8b2e2e;
-    --red-bright: #b33a3a;
-    --green-dark: #2d6b3a;
+    --red-dark: #e03e3e;
+    --red-bright: #ff4d4d;
+    --green-dark: #3ec45e;
+    --green-bright: #5eff7f;
     --blue-dark: #2a5a8a;
 
     --shadow-sm: 0 2px 4px rgba(43,27,12,0.12);
@@ -440,14 +441,14 @@ body {
     padding: 0;
     box-shadow: none;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .page-number-right {
     font-family: var(--font-quill);
     font-size: 2rem;
     font-weight: 700;
-    color: var(--gold);
+    color: #000;
     text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
     flex-shrink: 0;
     line-height: 1;
@@ -543,12 +544,12 @@ body {
 
 .page-details-wrapper .stat-mod-page.positive,
 .page-details-wrapper .positive-number {
-    color: #2d6b3a !important;
+    color: var(--green-dark) !important;
 }
 
 .page-details-wrapper .stat-mod-page.negative,
 .page-details-wrapper .negative-number {
-    color: #8b2e2e !important;
+    color: var(--red-dark) !important;
 }
 
 .page-details-wrapper .number-white,
