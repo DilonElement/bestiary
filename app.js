@@ -7,7 +7,7 @@
 const DATA_URL = 'data/monsters.json';
 const EXPORT_FILENAME = 'bestiary-monsters.json';
 
-// --- Текстуры пергамента (меняются при перелистывании) ---
+// --- Текстуры пергамента (привязаны к индексу страницы) ---
 // Используем именно сгенерированные noir-текстуры
 const textureImages = [
     'images/Generated_image_1_6.png',
@@ -16,27 +16,18 @@ const textureImages = [
     'images/GbKgM_PyUk8.jpg',
     'images/Generated_image_1_2.jpg',
 ];
-let currentTextureIndex = 0;
 
-// --- Установка текстуры по порядку (циклически) ---
-function setNextTexture() {
-    currentTextureIndex = (currentTextureIndex + 1) % textureImages.length;
-    const texturePath = textureImages[currentTextureIndex];
+// --- Установка текстуры по индексу страницы (циклически) ---
+function setTextureForPage(pageIndex) {
+    const textureIndex = pageIndex % textureImages.length;
+    const texturePath = textureImages[textureIndex];
     const root = document.documentElement;
     root.style.setProperty('--paper-texture-url', `url('${texturePath}')`);
     root.style.setProperty('--paper-bg', `linear-gradient(135deg, #f5e6d3 0%, #e6d8c2 100%)`);
 }
 
-function setPrevTexture() {
-    currentTextureIndex = (currentTextureIndex - 1 + textureImages.length) % textureImages.length;
-    const texturePath = textureImages[currentTextureIndex];
-    const root = document.documentElement;
-    root.style.setProperty('--paper-texture-url', `url('${texturePath}')`);
-    root.style.setProperty('--paper-bg', `linear-gradient(135deg, #f5e6d3 0%, #e6d8c2 100%)`);
-}
-
-// --- Первоначальная установка текстуры при загрузке страницы ---
-setNextTexture();
+// --- Первоначальная установка текстуры для обложки (индекс 0) ---
+setTextureForPage(0);
 
 // --- Состояние ---
 let monsters = [];           // Загруженные монстры
@@ -433,7 +424,7 @@ function setupNavigation() {
     navPrev.addEventListener('click', () => {
         if (currentPageIndex > 0) {
             currentPageIndex--;
-            setPrevTexture();
+            setTextureForPage(currentPageIndex);
             renderPage(currentPageIndex);
         }
     });
@@ -442,7 +433,7 @@ function setupNavigation() {
         const maxPage = monsters.length; // обложка + монстры
         if (currentPageIndex < maxPage) {
             currentPageIndex++;
-            setNextTexture();
+            setTextureForPage(currentPageIndex);
             renderPage(currentPageIndex);
         }
     });
@@ -485,6 +476,7 @@ function setupKeyboard() {
             e.preventDefault();
             if (currentPageIndex > 0) {
                 currentPageIndex--;
+                setTextureForPage(currentPageIndex);
                 renderPage(currentPageIndex);
             }
         } else if (e.key === 'ArrowRight') {
@@ -492,15 +484,18 @@ function setupKeyboard() {
             const maxPage = monsters.length;
             if (currentPageIndex < maxPage) {
                 currentPageIndex++;
+                setTextureForPage(currentPageIndex);
                 renderPage(currentPageIndex);
             }
         } else if (e.key === 'Home') {
             e.preventDefault();
             currentPageIndex = 0;
+            setTextureForPage(currentPageIndex);
             renderPage(0);
         } else if (e.key === 'End') {
             e.preventDefault();
             currentPageIndex = monsters.length;
+            setTextureForPage(currentPageIndex);
             renderPage(currentPageIndex);
         } else if (e.key === 't' || e.key === 'T') {
             e.preventDefault();
@@ -563,6 +558,7 @@ function updateThumbnails() {
 
         item.addEventListener('click', () => {
             currentPageIndex = i;
+            setTextureForPage(currentPageIndex);
             renderPage(i);
             thumbnailsPanel.classList.remove('open');
         });
