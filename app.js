@@ -217,7 +217,7 @@ function createMonsterPage(monster, pageNum) {
     div.innerHTML = `
         <div class="page-illustration-wrapper" style="padding-right: 0px; padding-left: 50px;">
             <span class="page-number">${pageNum}</span>
-            <div class="monster-illustration-frame" style="border-bottom-width: 200px; margin-bottom: 200px; margin-top: 30px;">
+            <div class="monster-illustration-frame" style="border-bottom-width: 200px; margin-bottom: 0px; margin-top: 50px;">
                 ${hasImage
                     ? `<img src="${escapeHtml(illustrationUrl)}?v=${Date.now()}" alt="${escapeHtml(monster.name)}" style="width:78%;height:78%;object-fit:cover;" onerror="this.style.display='none'; this.parentElement.querySelector('.illustration-placeholder').style.display='flex';">`
                     : (monster.name === 'Тараск'
@@ -233,9 +233,9 @@ function createMonsterPage(monster, pageNum) {
                 </div>
                 <div class="illustration-crow">🐦‍⬛</div>
             </div>
-            <div class="monster-illustration-frame-extra" style="width: 400px; height: 234px; margin-top: 20px; margin-left: auto; margin-right: auto; border: 1px dashed var(--ink-muted); border-radius: var(--radius-md); overflow: hidden; background: transparent;">
+            <div class="monster-illustration-frame-extra" style="width: 400px; height: 234px; margin-top: 20px; margin-left: auto; margin-right: auto; border: 1px dashed var(--ink-muted); border-radius: var(--radius-md); overflow: hidden; background: transparent; display: flex; align-items: center; justify-content: center;">
                 ${titleImages[monster.name]
-                    ? `<img src="${titleImages[monster.name]}" alt="${escapeHtml(monster.name)}" style="width:100%;height:100%;object-fit:cover;">`
+                    ? `<img src="${titleImages[monster.name]}" alt="${escapeHtml(monster.name)}" style="width:85%;height:85%;object-fit:cover;">`
                     : ''}
             </div>
         </div>
