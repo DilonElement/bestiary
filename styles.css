@@ -474,7 +474,7 @@ body {
 
 .monster-illustration-frame {
     flex: 1;
-    background: transparent;
+    background: url('images/%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%20%D0%BC%D0%BE%D0%BD%D1%81%D1%82%D1%80%D0%BE%D0%B2.png') center/cover no-repeat;
     border: 0;
     border-radius: var(--radius-md);
     overflow: hidden;
