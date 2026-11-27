@@ -210,7 +210,6 @@ function createMonsterPage(monster, pageNum) {
                     : monster.illustration
                         ? `<img src="${escapeHtml(monster.illustration)}" alt="${escapeHtml(monster.name)}" style="width:400px;height:439px;object-fit:cover;">`
                         : `<img src="images/шаблон монстров.png" alt="${escapeHtml(monster.name)}" style="width:400px;height:439px;object-fit:cover;">`}
-                }
                 <div class="illustration-placeholder" style="${hasImage ? 'display:none' : 'display:none'}">
                     <span class="placeholder-icon">🖼</span>
                     <p>Нет иллюстрации</p>
