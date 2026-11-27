@@ -619,8 +619,8 @@ function setupEditing() {
             return;
         }
 
-        const editBtn = e.target.closest('#btnEditMode');
-        if (editBtn) {
+        const editBtnNav = e.target.closest('#btnEditMode');
+        if (editBtnNav) {
             toggleEditMode();
             return;
         }
