@@ -212,8 +212,8 @@ function createMonsterPage(monster, pageNum) {
         <div class="page-illustration-wrapper" style="padding-right: 0px; padding-left: 50px;">
             <div class="monster-illustration-frame">
                 ${hasImage
-                    ? `<img src="${escapeHtml(illustrationUrl)}?v=${Date.now()}" alt="${escapeHtml(monster.name)}" onerror="this.style.display='none'; this.parentElement.querySelector('.illustration-placeholder').style.display='flex';">`
-                    : `<img src="images/шаблон монстров.png" alt="${escapeHtml(monster.name)}" style="width:76%;height:76%;object-fit:cover;">`
+                    ? `<img src="${escapeHtml(illustrationUrl)}?v=${Date.now()}" alt="${escapeHtml(monster.name)}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'; this.parentElement.querySelector('.illustration-placeholder').style.display='flex';">`
+                    : `<img src="images/шаблон монстров.png" alt="${escapeHtml(monster.name)}" style="width:100%;height:100%;object-fit:cover;">`
                 }
                 <div class="illustration-placeholder" style="${hasImage ? 'display:none' : 'display:none'}">
                     <span class="placeholder-icon">🖼</span>
