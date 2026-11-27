@@ -557,18 +557,6 @@ body {
     color: #fff !important;
 }
 
-.page-header-row .monster-name-page {
-    font-family: var(--font-quill);
-    font-size: 2.6rem;
-    font-weight: 700;
-    color: var(--gold);
-    letter-spacing: 1px;
-    border-bottom: 2px solid var(--ink-muted);
-    padding-bottom: 0.5rem;
-    margin: 0;
-    flex: 1;
-}
-
 .monster-meta-page {
     display: flex;
     flex-wrap: wrap;
@@ -586,7 +574,7 @@ body {
 
 .cr-badge-page {
     background: transparent;
-    color: var(--gold);
+    color: #000;
     padding: 0.15rem 0.5rem;
     border-radius: var(--radius-sm);
     font-weight: 700;
@@ -598,7 +586,7 @@ body {
     font-size: 0.8rem;
     letter-spacing: 0.5px;
     font-weight: 600;
-    color: var(--gold);
+    color: #000;
 }
 .size-badge-page { font-family: var(--font-mono); font-size: 0.85rem; color: var(--ink); }
 .alignment-badge-page { font-style: italic; color: var(--ink); }
@@ -630,7 +618,7 @@ body {
 
 .tab-btn-page:hover { color: var(--ink-muted); background: none; }
 .tab-btn-page.active {
-    color: var(--gold);
+    color: #000;
     background: none;
     border: none;
 }
@@ -671,7 +659,7 @@ body {
     font-family: var(--font-mono);
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--gold);
+    color: #fff;
 }
 
 .stat-mod-page {
@@ -722,7 +710,7 @@ body {
 .description-content-page p { margin-bottom: 1rem; }
 .description-content-page h3 {
     font-family: var(--font-title);
-    color: var(--gold);
+    color: #000;
     margin: 1.5rem 0 0.75rem;
     font-size: 1.2rem;
     border-bottom: 1px solid var(--ink-muted);
@@ -758,7 +746,7 @@ body {
     font-family: var(--font-title);
     font-size: 1.15rem;
     font-weight: 700;
-    color: var(--gold);
+    color: #000;
 }
 
 .action-type-page {
