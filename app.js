@@ -39,10 +39,6 @@ let isEditMode = false;      // Режим редактирования (вкл/
 
 // --- DOM элементы ---
 const bookContainer = document.getElementById('book-container');
-const navPrev = document.getElementById('navPrev');
-const navNext = document.getElementById('navNext');
-const pageIndicator = document.getElementById('pageIndicator');
-const thumbnailsBtn = document.getElementById('thumbnailsBtn');
 const thumbnailsPanel = document.getElementById('thumbnailsPanel');
 const thumbnailsClose = document.getElementById('thumbnailsClose');
 const thumbnailsGrid = document.getElementById('thumbnailsGrid');
@@ -52,7 +48,6 @@ const editForm = document.getElementById('editForm');
 const modalClose = document.getElementById('modalClose');
 const modalCancel = document.getElementById('modalCancel');
 const toastContainer = document.getElementById('toastContainer');
-const btnEditMode = document.getElementById('btnEditMode');
 
 // --- Инициализация ---
 document.addEventListener('DOMContentLoaded', () => {
@@ -217,9 +212,33 @@ function createMonsterPage(monster, pageNum) {
                 </div>
             </div>
             <div class="detail-tabs-page" style="margin-top: 20px; margin-bottom: 50px;">
+                <button class="nav-btn nav-prev" id="navPrev" aria-label="Предыдущая страница" title="Предыдущая (←)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <button class="nav-btn thumbnails-btn" id="thumbnailsBtn" aria-label="Оглавление" title="Оглавление (T)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                    </svg>
+                </button>
                 <button class="tab-btn-page active" data-tab="stats">Статы</button>
                 <button class="tab-btn-page" data-tab="description">Описание</button>
                 <button class="tab-btn-page" data-tab="actions">Действия</button>
+                <button class="nav-btn edit-btn" id="btnEditMode" aria-label="Режим редактирования" title="Редактирование (E)">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                </button>
+                <button class="nav-btn nav-next" id="navNext" aria-label="Следующая страница" title="Следующая (→)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
             </div>
         </div>
 
@@ -419,46 +438,28 @@ function renderActions(monster) {
    НАВИГАЦИЯ
    ======================================== */
 function setupNavigation() {
-    navPrev.addEventListener('click', () => {
-        if (currentPageIndex > 0) {
-            currentPageIndex--;
-            setTextureForPage(currentPageIndex);
-            renderPage(currentPageIndex);
-        }
-    });
-
-    navNext.addEventListener('click', () => {
-        const maxPage = monsters.length; // обложка + монстры
-        if (currentPageIndex < maxPage) {
-            currentPageIndex++;
-            setTextureForPage(currentPageIndex);
-            renderPage(currentPageIndex);
-        }
-    });
-
-    thumbnailsBtn.addEventListener('click', () => {
-        thumbnailsPanel.classList.toggle('open');
-    });
-
     thumbnailsClose.addEventListener('click', () => {
         thumbnailsPanel.classList.remove('open');
     });
-
-    btnEditMode.addEventListener('click', toggleEditMode);
 }
 
 function toggleEditMode() {
     isEditMode = !isEditMode;
+    const btnEditModeEl = document.getElementById('btnEditMode');
 
     if (isEditMode) {
-        btnEditMode.style.background = '#2d6b3a';
-        btnEditMode.style.color = '#fff';
-        btnEditMode.style.borderColor = '#2d6b3a';
+        if (btnEditModeEl) {
+            btnEditModeEl.style.background = '#2d6b3a';
+            btnEditModeEl.style.color = '#fff';
+            btnEditModeEl.style.borderColor = '#2d6b3a';
+        }
         showToast('Режим редактирования включён', 'info', 1500);
     } else {
-        btnEditMode.style.background = '';
-        btnEditMode.style.color = '';
-        btnEditMode.style.borderColor = '';
+        if (btnEditModeEl) {
+            btnEditModeEl.style.background = '';
+            btnEditModeEl.style.color = '';
+            btnEditModeEl.style.borderColor = '';
+        }
         showToast('Режим редактирования выключен', 'info', 1500);
     }
 
@@ -510,15 +511,10 @@ function setupKeyboard() {
 
 function updateNavigationUI() {
     const maxPage = monsters.length;
-    navPrev.disabled = currentPageIndex <= 0;
-    navNext.disabled = currentPageIndex >= maxPage;
-
-    if (currentPageIndex === 0) {
-        pageIndicator.textContent = 'Обложка';
-    } else {
-        const monster = monsters[currentPageIndex - 1];
-        pageIndicator.textContent = monster ? `Монстр ${currentPageIndex} из ${maxPage}: ${monster.name}` : `Страница ${currentPageIndex}`;
-    }
+    const navPrevEl = document.getElementById('navPrev');
+    const navNextEl = document.getElementById('navNext');
+    if (navPrevEl) navPrevEl.disabled = currentPageIndex <= 0;
+    if (navNextEl) navNextEl.disabled = currentPageIndex >= maxPage;
 }
 
 /* ========================================
@@ -592,6 +588,40 @@ function setupEditing() {
                 const panel = wrapper.querySelector(`#tab${tabName.charAt(0).toUpperCase() + tabName.slice(1)}`);
                 if (panel) panel.classList.add('active');
             }
+            return;
+        }
+
+        // Навигация (кнопки созданы динамически на страницах монстров)
+        const navPrevBtn = e.target.closest('#navPrev');
+        if (navPrevBtn) {
+            if (currentPageIndex > 0) {
+                currentPageIndex--;
+                setTextureForPage(currentPageIndex);
+                renderPage(currentPageIndex);
+            }
+            return;
+        }
+
+        const navNextBtn = e.target.closest('#navNext');
+        if (navNextBtn) {
+            const maxPage = monsters.length;
+            if (currentPageIndex < maxPage) {
+                currentPageIndex++;
+                setTextureForPage(currentPageIndex);
+                renderPage(currentPageIndex);
+            }
+            return;
+        }
+
+        const thumbsBtn = e.target.closest('#thumbnailsBtn');
+        if (thumbsBtn) {
+            thumbnailsPanel.classList.toggle('open');
+            return;
+        }
+
+        const editBtn = e.target.closest('#btnEditMode');
+        if (editBtn) {
+            toggleEditMode();
             return;
         }
 
