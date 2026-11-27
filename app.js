@@ -220,6 +220,9 @@ function createMonsterPage(monster, pageNum) {
                 </div>
                 <div class="illustration-crow">🐦‍⬛</div>
             </div>
+            <div class="monster-illustration-frame-extra" style="width: 400px; height: 234px; margin-top: 20px; margin-left: auto; margin-right: auto; border: 1px dashed var(--ink-muted); border-radius: var(--radius-md); overflow: hidden; background: transparent;">
+                <img src="images/шаблон монстров.png" alt="${escapeHtml(monster.name)}" style="width:100%;height:100%;object-fit:cover;">
+            </div>
         </div>
 
         <div class="page-details-wrapper">
