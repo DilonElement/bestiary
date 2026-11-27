@@ -159,7 +159,7 @@ function createMonsterPage(monster, pageNum) {
     const illustrationUrl = monster.illustration || '';
     const hasImage = !!illustrationUrl;
 
-    const crBadge = `<span class="cr-badge-page">ОП ${escapeHtml(monster.cr)}</span>`;
+    const crBadge = `<span class="cr-badge-page">ОП <span class="number-white">${escapeHtml(monster.cr)}</span></span>`;
     const typeBadge = `<span class="type-badge-page">${escapeHtml(monster.typeRu || monster.type)}</span>`;
     const sizeBadge = `<span class="size-badge-page">${escapeHtml(monster.size)}</span>`;
     const alignmentBadge = `<span class="alignment-badge-page">${escapeHtml(monster.alignment || '—')}</span>`;
@@ -178,15 +178,15 @@ function createMonsterPage(monster, pageNum) {
         <div class="stats-block-page">
             <div class="stat-item-page">
                 <div class="stat-item-label-page">Класс доспеха</div>
-                <div class="stat-item-value-page">${escapeHtml(monster.ac || '—')}</div>
+                <div class="stat-item-value-page number-white">${escapeHtml(monster.ac || '—')}</div>
             </div>
             <div class="stat-item-page">
                 <div class="stat-item-label-page">Хиты</div>
-                <div class="stat-item-value-page">${escapeHtml(monster.hp || '—')}</div>
+                <div class="stat-item-value-page number-white">${escapeHtml(monster.hp || '—')}</div>
             </div>
             <div class="stat-item-page">
                 <div class="stat-item-label-page">Скорость</div>
-                <div class="stat-item-value-page">
+                <div class="stat-item-value-page number-white">
                     ${speed.walk ? `${speed.walk} фт` : '—'}${speed.fly ? `, полёт ${speed.fly} фт` : ''}${speed.swim ? `, плавание ${speed.swim} фт` : ''}${speed.climb ? `, лазание ${speed.climb} фт` : ''}
                 </div>
             </div>
@@ -230,49 +230,49 @@ function createMonsterPage(monster, pageNum) {
                     <span class="page-number-right">${pageNum}</span>
                     <h2 class="monster-name-page">${escapeHtml(monster.name)}</h2>
                 </div>
-                <div class="monster-meta-page">
-                    ${crBadge}${typeBadge}${sizeBadge}${alignmentBadge}${sourceBadge}
-                </div>
                 ${editBtnHtml}
                 <div class="detail-tabs-page">
-                    <button class="tab-btn-page active" data-tab="stats">Характеристики</button>
+                    <button class="tab-btn-page active" data-tab="stats">Статы</button>
                     <button class="tab-btn-page" data-tab="description">Описание</button>
                     <button class="tab-btn-page" data-tab="actions">Действия</button>
                 </div>
             </div>
             <div style="flex: 1;">
                 <div class="tab-panel-page active" id="tabStats">
+                    <div class="monster-meta-page">
+                        ${crBadge}${typeBadge}${sizeBadge}${alignmentBadge}${sourceBadge}
+                    </div>
                     ${statsHtml}
 
                     <div class="stats-grid-page">
                         <div class="stat-block-page">
                             <div class="stat-label-page">СИЛ</div>
-                            <div class="stat-value-page">${abilities.str || 10}</div>
+                            <div class="stat-value-page number-white">${abilities.str || 10}</div>
                             <div class="stat-mod-page ${abilityMod(abilities.str) > 0 ? 'positive' : abilityMod(abilities.str) < 0 ? 'negative' : ''}">${abilityMod(abilities.str)}</div>
                         </div>
                         <div class="stat-block-page">
                             <div class="stat-label-page">ЛОВ</div>
-                            <div class="stat-value-page">${abilities.dex || 10}</div>
+                            <div class="stat-value-page number-white">${abilities.dex || 10}</div>
                             <div class="stat-mod-page ${abilityMod(abilities.dex) > 0 ? 'positive' : abilityMod(abilities.dex) < 0 ? 'negative' : ''}">${abilityMod(abilities.dex)}</div>
                         </div>
                         <div class="stat-block-page">
                             <div class="stat-label-page">ТЕЛ</div>
-                            <div class="stat-value-page">${abilities.con || 10}</div>
+                            <div class="stat-value-page number-white">${abilities.con || 10}</div>
                             <div class="stat-mod-page ${abilityMod(abilities.con) > 0 ? 'positive' : abilityMod(abilities.con) < 0 ? 'negative' : ''}">${abilityMod(abilities.con)}</div>
                         </div>
                         <div class="stat-block-page">
                             <div class="stat-label-page">ИНТ</div>
-                            <div class="stat-value-page">${abilities.int || 10}</div>
+                            <div class="stat-value-page number-white">${abilities.int || 10}</div>
                             <div class="stat-mod-page ${abilityMod(abilities.int) > 0 ? 'positive' : abilityMod(abilities.int) < 0 ? 'negative' : ''}">${abilityMod(abilities.int)}</div>
                         </div>
                         <div class="stat-block-page">
                             <div class="stat-label-page">МДР</div>
-                            <div class="stat-value-page">${abilities.wis || 10}</div>
+                            <div class="stat-value-page number-white">${abilities.wis || 10}</div>
                             <div class="stat-mod-page ${abilityMod(abilities.wis) > 0 ? 'positive' : abilityMod(abilities.wis) < 0 ? 'negative' : ''}">${abilityMod(abilities.wis)}</div>
                         </div>
                         <div class="stat-block-page">
                             <div class="stat-label-page">ХАР</div>
-                            <div class="stat-value-page">${abilities.cha || 10}</div>
+                            <div class="stat-value-page number-white">${abilities.cha || 10}</div>
                             <div class="stat-mod-page ${abilityMod(abilities.cha) > 0 ? 'positive' : abilityMod(abilities.cha) < 0 ? 'negative' : ''}">${abilityMod(abilities.cha)}</div>
                         </div>
                     </div>
