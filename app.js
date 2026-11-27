@@ -586,8 +586,10 @@ function setupEditing() {
         const tabBtn = e.target.closest('.tab-btn-page');
         if (tabBtn) {
             const tabName = tabBtn.dataset.tab;
-            const wrapper = tabBtn.closest('.page-details-wrapper');
-            if (wrapper) {
+            // Табы теперь в .page-illustration-wrapper, панели в .page-details-wrapper (соседние элементы)
+            const illustrationWrapper = tabBtn.closest('.page-illustration-wrapper');
+            const wrapper = illustrationWrapper ? illustrationWrapper.nextElementSibling : tabBtn.closest('.page-details-wrapper');
+            if (wrapper && wrapper.classList.contains('page-details-wrapper')) {
                 wrapper.querySelectorAll('.tab-btn-page').forEach(b => b.classList.remove('active'));
                 wrapper.querySelectorAll('.tab-panel-page').forEach(p => p.classList.remove('active'));
                 tabBtn.classList.add('active');
