@@ -1230,8 +1230,7 @@ body {
         flex: none;
         border-right: none;
         border-bottom: 1px solid var(--ink-muted);
-        padding: 1rem 0 0.5rem 0;
-        padding-left: 0;
+        padding: 0;
         min-height: auto;
         height: auto;
         overflow: visible;
