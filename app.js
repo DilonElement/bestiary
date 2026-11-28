@@ -67,6 +67,9 @@ async function init() {
         // 5. Клавиатурная навигация
         setupKeyboard();
 
+        // 6. Свайп-навигация (только мобильные)
+        setupTouchNavigation();
+
         showLoading(false);
     } catch (err) {
         console.error('Ошибка инициализации:', err);
@@ -234,6 +237,34 @@ function createMonsterPage(monster, pageNum) {
                     </svg>
                 </button>
             </div>
+        </div>
+
+        <!-- Мобильная панель навигации (показывается только на мобильных через CSS) -->
+        <div class="mobile-nav-bar">
+            <button class="nav-btn nav-prev" id="navPrevMobile" aria-label="Предыдущая страница" title="Предыдущая (←)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+            <button class="nav-btn thumbnails-btn" id="thumbnailsBtnMobile" aria-label="Оглавление" title="Оглавление (T)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                </svg>
+            </button>
+            <button class="nav-btn edit-btn" id="btnEditModeMobile" aria-label="Режим редактирования" title="Редактирование (E)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+            </button>
+            <button class="nav-btn nav-next" id="navNextMobile" aria-label="Следующая страница" title="Следующая (→)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
         </div>
 
         <div class="page-details-wrapper" style="margin: 20px;">
@@ -497,10 +528,47 @@ function setupKeyboard() {
     });
 }
 
+/* ========================================
+   СВАЙП-НАВИГАЦИЯ (только мобильные)
+   ======================================== */
+function setupTouchNavigation() {
+    let startX = 0;
+    let endX = 0;
+
+    bookContainer.addEventListener('touchstart', (e) => {
+        startX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    bookContainer.addEventListener('touchend', (e) => {
+        endX = e.changedTouches[0].screenX;
+        const diff = startX - endX;
+
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+                // Свайп влево — следующая страница
+                const navNextBtn = document.getElementById('navNext') || document.getElementById('navNextMobile');
+                if (navNextBtn && !navNextBtn.disabled) {
+                    currentPageIndex++;
+                    setTextureForPage(currentPageIndex);
+                    renderPage(currentPageIndex);
+                }
+            } else {
+                // Свайп вправо — предыдущая страница
+                const navPrevBtn = document.getElementById('navPrev') || document.getElementById('navPrevMobile');
+                if (navPrevBtn && !navPrevBtn.disabled) {
+                    currentPageIndex--;
+                    setTextureForPage(currentPageIndex);
+                    renderPage(currentPageIndex);
+                }
+            }
+        }
+    }, { passive: true });
+}
+
 function updateNavigationUI() {
     const maxPage = monsters.length;
-    const navPrevEl = document.getElementById('navPrev');
-    const navNextEl = document.getElementById('navNext');
+    const navPrevEl = document.getElementById('navPrev') || document.getElementById('navPrevMobile');
+    const navNextEl = document.getElementById('navNext') || document.getElementById('navNextMobile');
     if (navPrevEl) navPrevEl.disabled = currentPageIndex <= 0;
     if (navNextEl) navNextEl.disabled = currentPageIndex >= maxPage;
 }
@@ -580,7 +648,7 @@ function setupEditing() {
         }
 
         // Навигация (кнопки созданы динамически на страницах монстров)
-        const navPrevBtn = e.target.closest('#navPrev');
+        const navPrevBtn = e.target.closest('#navPrev') || e.target.closest('#navPrevMobile');
         if (navPrevBtn) {
             if (currentPageIndex > 0) {
                 currentPageIndex--;
@@ -590,7 +658,7 @@ function setupEditing() {
             return;
         }
 
-        const navNextBtn = e.target.closest('#navNext');
+        const navNextBtn = e.target.closest('#navNext') || e.target.closest('#navNextMobile');
         if (navNextBtn) {
             const maxPage = monsters.length;
             if (currentPageIndex < maxPage) {
@@ -601,13 +669,13 @@ function setupEditing() {
             return;
         }
 
-        const thumbsBtn = e.target.closest('#thumbnailsBtn');
+        const thumbsBtn = e.target.closest('#thumbnailsBtn') || e.target.closest('#thumbnailsBtnMobile');
         if (thumbsBtn) {
             thumbnailsPanel.classList.toggle('open');
             return;
         }
 
-        const editBtnNav = e.target.closest('#btnEditMode');
+        const editBtnNav = e.target.closest('#btnEditMode') || e.target.closest('#btnEditModeMobile');
         if (editBtnNav) {
             toggleEditMode();
             return;
