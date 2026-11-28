@@ -441,30 +441,12 @@ function toggleEditMode() {
             btnEditModeEl.style.borderColor = '#2d6b3a';
         }
         showToast('Режим редактирования включён', 'info', 1500);
-
-        // Открыть модалку редактирования ниже кнопки для текущего монстра
-        if (currentPageIndex > 0) {
-            const monster = monsters[currentPageIndex - 1];
-            if (monster) {
-                currentEditId = monster.id;
-                fillFormFromMonster(monster);
-                editModal.showModal();
-                // Позиционируем модалку ниже кнопки редактирования
-                const rect = btnEditModeEl.getBoundingClientRect();
-                editModal.style.position = 'fixed';
-                editModal.style.left = Math.max(10, rect.left) + 'px';
-                editModal.style.top = (rect.bottom + 8) + 'px';
-                editModal.style.width = '420px';
-                editModal.style.maxWidth = 'calc(100vw - 20px)';
-            }
-        }
     } else {
         if (btnEditModeEl) {
             btnEditModeEl.style.background = '';
             btnEditModeEl.style.color = '';
             btnEditModeEl.style.borderColor = '';
         }
-        editModal.close();
         showToast('Режим редактирования выключен', 'info', 1500);
     }
 
