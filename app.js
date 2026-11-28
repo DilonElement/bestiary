@@ -157,7 +157,7 @@ function createCoverPage() {
                     const video = document.createElement('video');
                     video.src = 'images/video-cover.mp4';
                     video.className = 'cover-video cover-mobile';
-                    video.muted = true;
+                    video.muted = false;
                     video.playsInline = true;
                     video.style.display = 'block';
                     video.style.width = '100%';
