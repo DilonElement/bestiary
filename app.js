@@ -221,6 +221,7 @@ function createMonsterPage(monster, pageNum) {
                 <button class="tab-btn-page active" data-tab="stats">Статы</button>
                 <button class="tab-btn-page" data-tab="description">Описание</button>
                 <button class="tab-btn-page" data-tab="actions">Действия</button>
+                ${editBtnHtml}
                 <button class="nav-btn edit-btn" id="btnEditMode" aria-label="Режим редактирования" title="Редактирование (E)">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
