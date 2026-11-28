@@ -546,16 +546,15 @@ function setupTouchNavigation() {
         if (Math.abs(diff) > 50) {
             if (diff > 0) {
                 // Свайп влево — следующая страница
-                const navNextBtn = document.getElementById('navNext') || document.getElementById('navNextMobile');
-                if (navNextBtn && !navNextBtn.disabled) {
+                const maxPage = monsters.length;
+                if (currentPageIndex < maxPage) {
                     currentPageIndex++;
                     setTextureForPage(currentPageIndex);
                     renderPage(currentPageIndex);
                 }
             } else {
                 // Свайп вправо — предыдущая страница
-                const navPrevBtn = document.getElementById('navPrev') || document.getElementById('navPrevMobile');
-                if (navPrevBtn && !navPrevBtn.disabled) {
+                if (currentPageIndex > 0) {
                     currentPageIndex--;
                     setTextureForPage(currentPageIndex);
                     renderPage(currentPageIndex);
@@ -634,14 +633,12 @@ function setupEditing() {
         const tabBtn = e.target.closest('.tab-btn-page');
         if (tabBtn) {
             const tabName = tabBtn.dataset.tab;
-            // Табы теперь в .page-illustration-wrapper, панели в .page-details-wrapper (соседние элементы)
-            const illustrationWrapper = tabBtn.closest('.page-illustration-wrapper');
-            const wrapper = illustrationWrapper ? illustrationWrapper.nextElementSibling : tabBtn.closest('.page-details-wrapper');
-            if (wrapper && wrapper.classList.contains('page-details-wrapper')) {
-                wrapper.querySelectorAll('.tab-btn-page').forEach(b => b.classList.remove('active'));
-                wrapper.querySelectorAll('.tab-panel-page').forEach(p => p.classList.remove('active'));
+            const page = tabBtn.closest('.page');
+            if (page) {
+                page.querySelectorAll('.tab-btn-page').forEach(b => b.classList.remove('active'));
+                page.querySelectorAll('.tab-panel-page').forEach(p => p.classList.remove('active'));
                 tabBtn.classList.add('active');
-                const panel = wrapper.querySelector(`#tab${tabName.charAt(0).toUpperCase() + tabName.slice(1)}`);
+                const panel = page.querySelector(`#tab${tabName.charAt(0).toUpperCase() + tabName.slice(1)}`);
                 if (panel) panel.classList.add('active');
             }
             return;
