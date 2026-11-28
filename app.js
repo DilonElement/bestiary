@@ -631,18 +631,28 @@ function setupKeyboard() {
    ======================================== */
 function setupTouchNavigation() {
     let startX = 0;
+    let startY = 0;
     let endX = 0;
+    let endY = 0;
 
     bookContainer.addEventListener('touchstart', (e) => {
         startX = e.changedTouches[0].screenX;
+        startY = e.changedTouches[0].screenY;
     }, { passive: true });
 
     bookContainer.addEventListener('touchend', (e) => {
         endX = e.changedTouches[0].screenX;
-        const diff = startX - endX;
-
-        if (Math.abs(diff) > 50) {
-            if (diff > 0) {
+        endY = e.changedTouches[0].screenY;
+        
+        const diffX = startX - endX;
+        const diffY = startY - endY;
+        const absDiffX = Math.abs(diffX);
+        const absDiffY = Math.abs(diffY);
+        
+        // Игнорируем, если движение больше по вертикали (скролл)
+        // Порог для свайпа: 100px по горизонтали и меньше 50px по вертикали
+        if (absDiffX > 100 && absDiffX > absDiffY * 2) {
+            if (diffX > 0) {
                 // Свайп влево — следующая страница
                 const maxPage = monsters.length;
                 if (currentPageIndex < maxPage) {
