@@ -1335,20 +1335,36 @@ body {
         height: auto !important;
     }
 
-    /* Скрываем кнопки навигации из строки табов на мобильных */
+    /* На мобильных в строке табов показываем: Оглавление | Табы | Редактирование */
     .detail-tabs-page .nav-btn {
         display: none;
     }
+    .detail-tabs-page .thumbnails-btn,
+    .detail-tabs-page .edit-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    /* Оглавление — слева от табов */
+    .detail-tabs-page .thumbnails-btn {
+        margin-right: auto;
+    }
+    /* Редактирование — справа от табов */
+    .detail-tabs-page .edit-btn {
+        margin-left: auto;
+    }
 
-    /* Мобильная панель навигации — просто часть контента внизу */
+    /* Мобильная панель навигации — только стрелки навигации */
     .mobile-nav-bar {
         display: flex;
-        justify-content: center;
-        gap: 0.5rem;
-        padding: 0.75rem 0.5rem;
+        justify-content: space-between;
+        padding: 0.5rem;
         background: var(--paper-dark);
         border-top: 1px solid var(--ink);
         z-index: 50;
+    }
+    .mobile-nav-bar .nav-btn:not(.nav-prev):not(.nav-next) {
+        display: none;
     }
 }
 
