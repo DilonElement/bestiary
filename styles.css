@@ -223,11 +223,9 @@ body {
 }
 
 .nav-btn:hover:not(:disabled) {
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
+    background: none;
 }
 
-.nav-btn:active:not(:disabled) { transform: translateY(0); }
 .nav-btn:disabled { opacity: 0.4; cursor: not-allowed; border-color: var(--ink-light); }
 
 .nav-center {
