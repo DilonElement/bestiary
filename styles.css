@@ -542,7 +542,11 @@ body {
 
 .page-details-wrapper .number-white,
 .page-details-wrapper .stat-value-page {
-    color: #fff !important;
+    color: #000 !important;
+}
+
+.page-details-wrapper, .page-details-wrapper * {
+    color: #000 !important;
 }
 
 .monster-meta-page {
