@@ -235,7 +235,7 @@ function createMonsterPage(monster, pageNum) {
             </div>
         </div>
 
-        <div class="page-details-wrapper">
+        <div class="page-details-wrapper" style="margin: 20px;">
             <div style="flex: 1;">
                 <div class="tab-panel-page active" id="tabStats">
                     <div class="monster-meta-page">
