@@ -134,40 +134,82 @@ function createCoverPage() {
     const videoPlayed = localStorage.getItem('coverVideoPlayed') === 'true';
     
     if (isMobile && !videoPlayed) {
-        // Первое посещение на мобильном — показываем видео
+        // Мобильное, видео еще не играло — показываем статичную обложку с индикатором воспроизведения
         div.innerHTML = `
             <img src="images/cover.png" alt="Обложка бестиария" class="cover-image cover-desktop">
-            <video src="images/video-cover.mp4" class="cover-video cover-mobile" autoplay muted playsinline></video>
-            <img src="images/cover1.jpg" alt="Обложка бестиария" class="cover-image cover-mobile" style="display: none;">
+            <img src="images/cover1.jpg" alt="Обложка бестиария" class="cover-image cover-mobile cover-static">
+            <div class="cover-play-overlay" title="Нажмите для воспроизведения">
+                <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" width="64" height="64">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+            </div>
         `;
         
-        // После рендера настраиваем видео
+        // Настраиваем клик для запуска видео
         setTimeout(() => {
-            const video = div.querySelector('.cover-video');
-            const staticCover = div.querySelector('.cover-image.cover-mobile');
+            const staticCover = div.querySelector('.cover-static');
+            const playOverlay = div.querySelector('.cover-play-overlay');
             
-            if (video && staticCover) {
-                video.addEventListener('ended', () => {
-                    video.style.display = 'none';
-                    staticCover.style.display = 'block';
-                    localStorage.setItem('coverVideoPlayed', 'true');
-                });
-                
-                // Фоллбэк: если видео не загрузилось или ошибка — сразу показываем статику
-                video.addEventListener('error', () => {
-                    video.style.display = 'none';
-                    staticCover.style.display = 'block';
-                    localStorage.setItem('coverVideoPlayed', 'true');
-                });
-                
-                // Доп. фоллбэк: если видео застряло, через 30 сек показываем статику
-                setTimeout(() => {
-                    if (!video.ended && video.style.display !== 'none') {
-                        video.style.display = 'none';
+            if (staticCover && playOverlay) {
+                const startVideo = () => {
+                    // Заменяем статику на видео
+                    playOverlay.style.display = 'none';
+                    staticCover.style.display = 'none';
+                    
+                    const video = document.createElement('video');
+                    video.src = 'images/video-cover.mp4';
+                    video.className = 'cover-video cover-mobile';
+                    video.muted = true;
+                    video.playsInline = true;
+                    video.style.display = 'block';
+                    video.style.width = '100%';
+                    video.style.height = '100%';
+                    video.style.objectFit = 'cover';
+                    video.style.position = 'absolute';
+                    video.style.top = '0';
+                    video.style.left = '0';
+                    video.style.zIndex = '10';
+                    
+                    div.insertBefore(video, staticCover);
+                    
+                    // Пытаемся запустить
+                    const playPromise = video.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(() => {
+                            // Автовоспроизведение заблокировано — показываем статику
+                            video.remove();
+                            staticCover.style.display = 'block';
+                        });
+                    }
+                    
+                    video.addEventListener('ended', () => {
+                        video.remove();
                         staticCover.style.display = 'block';
                         localStorage.setItem('coverVideoPlayed', 'true');
-                    }
-                }, 30000);
+                    });
+                    
+                    video.addEventListener('error', () => {
+                        video.remove();
+                        staticCover.style.display = 'block';
+                        localStorage.setItem('coverVideoPlayed', 'true');
+                    });
+                    
+                    // Фоллбэк: если видео застряло
+                    setTimeout(() => {
+                        if (!video.ended && video.parentNode) {
+                            video.remove();
+                            staticCover.style.display = 'block';
+                            localStorage.setItem('coverVideoPlayed', 'true');
+                        }
+                    }, 30000);
+                };
+                
+                // Клик по обложке или кнопке play
+                staticCover.addEventListener('click', startVideo, { once: true });
+                playOverlay.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    startVideo();
+                }, { once: true });
             }
         }, 0);
     } else {
