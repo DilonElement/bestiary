@@ -223,8 +223,6 @@ body {
 }
 
 .nav-btn:hover:not(:disabled) {
-    background: var(--paper-dark);
-    border-color: var(--gold);
     transform: translateY(-1px);
     box-shadow: var(--shadow-md);
 }
