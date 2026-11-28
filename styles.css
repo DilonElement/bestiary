@@ -1218,7 +1218,7 @@ body {
     .monster-page {
         flex-direction: column;
         height: auto;
-        min-height: 100vh;
+        min-height: auto;
         overflow: visible;
     }
 
@@ -1255,6 +1255,14 @@ body {
     /* Вся страница скроллится вместе — иллюстрация, табы и контент */
     .page {
         overflow-y: auto;
+        height: auto;
+        min-height: auto;
+    }
+
+    /* Контейнер книги на мобильных — не фиксированная высота */
+    .book-container:not(:has(.book-cover)) {
+        height: auto;
+        min-height: 100vh;
     }
 
     /* На обложке скроллинг закрыт */
@@ -1273,7 +1281,7 @@ body {
         display: none;
     }
 
-    /* Мобильная панель навигации под иллюстрацией */
+    /* Мобильная панель навигации — просто часть контента внизу */
     .mobile-nav-bar {
         display: flex;
         justify-content: center;
@@ -1281,8 +1289,6 @@ body {
         padding: 0.75rem 0.5rem;
         background: var(--paper-dark);
         border-top: 1px solid var(--ink);
-        position: sticky;
-        bottom: 0;
         z-index: 50;
     }
 }
