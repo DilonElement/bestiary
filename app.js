@@ -70,9 +70,6 @@ async function init() {
         // 6. Свайп-навигация (только мобильные)
         setupTouchNavigation();
 
-        // 7. Видео обложки (только мобильные, один раз при заходе)
-        setupCoverVideo();
-
         showLoading(false);
     } catch (err) {
         console.error('Ошибка инициализации:', err);
