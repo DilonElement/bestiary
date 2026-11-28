@@ -1256,6 +1256,11 @@ body {
         overflow-y: auto;
     }
 
+    /* На обложке скроллинг закрыт */
+    .page.book-cover {
+        overflow-y: hidden;
+    }
+
     /* Картинка монстра — подстраивается под ширину экрана */
     .monster-illustration-frame img {
         width: 100% !important;
