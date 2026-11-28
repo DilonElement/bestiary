@@ -70,6 +70,9 @@ async function init() {
         // 6. Свайп-навигация (только мобильные)
         setupTouchNavigation();
 
+        // 7. Видео обложки (только мобильные, один раз при заходе)
+        setupCoverVideo();
+
         showLoading(false);
     } catch (err) {
         console.error('Ошибка инициализации:', err);
@@ -128,10 +131,56 @@ function renderPage(index) {
 function createCoverPage() {
     const div = document.createElement('div');
     div.className = 'page book-cover page-flip-enter';
-    div.innerHTML = `
-        <img src="images/cover.png" alt="Обложка бестиария" class="cover-image cover-desktop">
-        <img src="images/cover1.jpg" alt="Обложка бестиария" class="cover-image cover-mobile">
-    `;
+    
+    // Проверяем, было ли уже воспроизведено видео (только для мобильных)
+    const isMobile = window.innerWidth <= 768;
+    const videoPlayed = localStorage.getItem('coverVideoPlayed') === 'true';
+    
+    if (isMobile && !videoPlayed) {
+        // Первое посещение на мобильном — показываем видео
+        div.innerHTML = `
+            <img src="images/cover.png" alt="Обложка бестиария" class="cover-image cover-desktop">
+            <video src="images/video-cover.mp4" class="cover-video cover-mobile" autoplay muted playsinline></video>
+            <img src="images/cover1.jpg" alt="Обложка бестиария" class="cover-image cover-mobile" style="display: none;">
+        `;
+        
+        // После рендера настраиваем видео
+        setTimeout(() => {
+            const video = div.querySelector('.cover-video');
+            const staticCover = div.querySelector('.cover-image.cover-mobile');
+            
+            if (video && staticCover) {
+                video.addEventListener('ended', () => {
+                    video.style.display = 'none';
+                    staticCover.style.display = 'block';
+                    localStorage.setItem('coverVideoPlayed', 'true');
+                });
+                
+                // Фоллбэк: если видео не загрузилось или ошибка — сразу показываем статику
+                video.addEventListener('error', () => {
+                    video.style.display = 'none';
+                    staticCover.style.display = 'block';
+                    localStorage.setItem('coverVideoPlayed', 'true');
+                });
+                
+                // Доп. фоллбэк: если видео застряло, через 30 сек показываем статику
+                setTimeout(() => {
+                    if (!video.ended && video.style.display !== 'none') {
+                        video.style.display = 'none';
+                        staticCover.style.display = 'block';
+                        localStorage.setItem('coverVideoPlayed', 'true');
+                    }
+                }, 30000);
+            }
+        }, 0);
+    } else {
+        // Десктоп или видео уже было воспроизведено — показываем статику сразу
+        div.innerHTML = `
+            <img src="images/cover.png" alt="Обложка бестиария" class="cover-image cover-desktop">
+            <img src="images/cover1.jpg" alt="Обложка бестиария" class="cover-image cover-mobile">
+        `;
+    }
+    
     return div;
 }
 
