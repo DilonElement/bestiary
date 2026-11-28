@@ -1265,84 +1265,12 @@ body {
         bottom: 0;
         z-index: 50;
     }
-
-    /* Статы — 2 колонки вместо 6 */
-    .stats-grid-page {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    /* Меньше шрифты на мобильных */
-    .description-content-page {
-        font-size: 0.95rem;
-    }
-
-    .monster-meta-page {
-        font-size: 0.85rem;
-        gap: 0.5rem;
-    }
-
-    /* Модалка редактирования — на всю ширину */
-    .modal {
-        width: 100vw;
-        max-width: 100vw;
-        height: 100vh;
-        max-height: 100vh;
-        border-radius: 0;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .modal-body {
-        max-height: 75vh;
-        overflow-y: auto;
-    }
-
-    .modal-footer {
-        position: sticky;
-        bottom: 0;
-        background: var(--paper-dark);
-    }
-
-    /* Оглавление — больше колонок */
-    .thumbnails-panel {
-        width: 100vw;
-        height: 50vh;
-        top: auto;
-        bottom: 0;
-    }
-
-    .thumbnails-grid {
-        grid-template-columns: repeat(5, 1fr);
-        gap: 0.4rem;
-        padding: 0.5rem;
-    }
-
-    .thumbnail-item img {
-        object-fit: cover;
-    }
-
-    /* Обложка на мобильных */
-    .book-cover {
-        padding: 1rem;
-    }
-
-    .cover-title {
-        font-size: 2.5rem;
-    }
-
-    .cover-subtitle {
-        font-size: 1.5rem;
-        margin-bottom: 2rem;
-    }
-
-    .cover-footer {
-        font-size: 1rem;
-        padding: 0 1rem;
-    }
 }
 
-/* Свайп-навигация уже обрабатывается в JS, стили не нужны */
+/* На десктопе мобильная панель навигации скрыта */
+.mobile-nav-bar {
+    display: none;
+}
 
 .sr-only {
     position: absolute;
