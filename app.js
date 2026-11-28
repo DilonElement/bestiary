@@ -129,12 +129,10 @@ function createCoverPage() {
     const div = document.createElement('div');
     div.className = 'page book-cover page-flip-enter';
     
-    // Проверяем, было ли уже воспроизведено видео (только для мобильных)
     const isMobile = window.innerWidth <= 768;
-    const videoPlayed = localStorage.getItem('coverVideoPlayed') === 'true';
     
-    if (isMobile && !videoPlayed) {
-        // Мобильное, видео еще не играло — показываем статичную обложку с индикатором воспроизведения
+    if (isMobile) {
+        // Мобильные — всегда показываем статичную обложку с кнопкой Play
         div.innerHTML = `
             <img src="images/cover.png" alt="Обложка бестиария" class="cover-image cover-desktop">
             <img src="images/cover1.jpg" alt="Обложка бестиария" class="cover-image cover-mobile cover-static">
@@ -145,7 +143,7 @@ function createCoverPage() {
             </div>
         `;
         
-        // Настраиваем клик для запуска видео
+        // Настраиваем клик для запуска видео (каждый раз)
         setTimeout(() => {
             const staticCover = div.querySelector('.cover-static');
             const playOverlay = div.querySelector('.cover-play-overlay');
@@ -179,19 +177,20 @@ function createCoverPage() {
                             // Автовоспроизведение заблокировано — показываем статику
                             video.remove();
                             staticCover.style.display = 'block';
+                            playOverlay.style.display = 'flex';
                         });
                     }
                     
                     video.addEventListener('ended', () => {
                         video.remove();
                         staticCover.style.display = 'block';
-                        localStorage.setItem('coverVideoPlayed', 'true');
+                        playOverlay.style.display = 'flex';
                     });
                     
                     video.addEventListener('error', () => {
                         video.remove();
                         staticCover.style.display = 'block';
-                        localStorage.setItem('coverVideoPlayed', 'true');
+                        playOverlay.style.display = 'flex';
                     });
                     
                     // Фоллбэк: если видео застряло
@@ -199,21 +198,32 @@ function createCoverPage() {
                         if (!video.ended && video.parentNode) {
                             video.remove();
                             staticCover.style.display = 'block';
-                            localStorage.setItem('coverVideoPlayed', 'true');
+                            playOverlay.style.display = 'flex';
                         }
                     }, 30000);
                 };
                 
-                // Клик по обложке или кнопке play
-                staticCover.addEventListener('click', startVideo, { once: true });
-                playOverlay.addEventListener('click', (e) => {
+                // Клик по обложке или кнопке play — каждый раз
+                const handleClick = () => {
+                    startVideo();
+                    // Перевешиваем обработчики заново после окончания видео
+                    staticCover.removeEventListener('click', handleClick);
+                    playOverlay.removeEventListener('click', handleOverlayClick);
+                };
+                
+                const handleOverlayClick = (e) => {
                     e.stopPropagation();
                     startVideo();
-                }, { once: true });
+                    staticCover.removeEventListener('click', handleClick);
+                    playOverlay.removeEventListener('click', handleOverlayClick);
+                };
+                
+                staticCover.addEventListener('click', handleClick);
+                playOverlay.addEventListener('click', handleOverlayClick);
             }
         }, 0);
     } else {
-        // Десктоп или видео уже было воспроизведено — показываем статику сразу
+        // Десктоп — просто статика
         div.innerHTML = `
             <img src="images/cover.png" alt="Обложка бестиария" class="cover-image cover-desktop">
             <img src="images/cover1.jpg" alt="Обложка бестиария" class="cover-image cover-mobile">
