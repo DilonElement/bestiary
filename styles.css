@@ -1214,6 +1214,10 @@ body {
    МОБИЛЬНАЯ АДАПТАЦИЯ (только < 768px)
    ======================================== */
 @media (max-width: 768px) {
+    :root {
+        --paper-texture-url: url("images/Страница Бестиария мобл.jpg") !important;
+    }
+
     /* Вертикальная стопка: иллюстрация сверху, статы снизу */
     .monster-page {
         flex-direction: column;
