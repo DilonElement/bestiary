@@ -1247,14 +1247,18 @@ body {
         height: auto;
         margin: 0;
         padding: 1rem;
-        overflow-y: auto;
-        max-height: calc(100vh - 200px);
+        overflow-y: visible;
         font-size: 0.9rem;
         box-sizing: border-box;
     }
 
-    /* Страница не скроллится целиком — только блок статов/описания/действий */
+    /* Вся страница скроллится вместе — иллюстрация, табы и контент */
     .page {
+        overflow-y: auto;
+    }
+
+    /* На обложке скроллинг закрыт */
+    .page.book-cover {
         overflow-y: hidden;
     }
 
